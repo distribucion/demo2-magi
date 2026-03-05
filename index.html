@@ -1,0 +1,2344 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      ER Consultores Integrales – Consultoría Estratégica Empresarial
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="logo-er.png" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --gold: #b08d3e;
+        --gold-dark: #8c6d2e;
+        --gold-light: #c9a84c;
+        --gold-pale: #f7f0e0;
+        --navy: #0f1c3f;
+        --navy-mid: #1a2d55;
+        --navy-light: #2a4070;
+        --slate: #6b7a99;
+        --slate-light: #9ba8c2;
+        --cream: #fdfbf7;
+        --cream-mid: #f8f5ef;
+        --white: #ffffff;
+        --bg-warm: #faf8f4;
+        --border-light: #e8e2d6;
+        --border-gold: rgba(176, 141, 62, 0.2);
+        --text-dark: #0f1c3f;
+        --text-body: #3d4a63;
+        --text-muted: #7a8599;
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "DM Sans", "Helvetica Neue", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+      body {
+        font-family: var(--font-body);
+        color: var(--text-body);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* === LOADER === */
+      .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.8s,
+          visibility 0.8s;
+      }
+      .loader.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .loader-logo {
+        width: 80px;
+        height: auto;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scale(0.95);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* === GLOBAL === */
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .section {
+        padding: 7rem 2rem;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.15s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.45s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.6s;
+      }
+
+      /* === NAVIGATION === */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 2rem;
+        transition: all 0.4s ease;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+      }
+      nav.scrolled {
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-light);
+        padding: 0.7rem 2rem;
+        box-shadow: 0 1px 20px rgba(15, 28, 63, 0.04);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo-img {
+        height: 50px;
+        width: auto;
+        transition: height 0.3s;
+      }
+      nav.scrolled .nav-logo-img {
+        height: 42px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
+      }
+      .nav-links a {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        transition: color 0.3s;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--navy);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-cta {
+        background: var(--navy);
+        border: 1px solid var(--navy);
+        color: var(--white) !important;
+        padding: 0.55rem 1.4rem;
+        font-size: 0.76rem !important;
+        letter-spacing: 0.12em;
+        transition: all 0.3s !important;
+        cursor: pointer;
+      }
+      .nav-cta:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--white) !important;
+      }
+      .nav-cta::after {
+        display: none !important;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      .hamburger span {
+        width: 24px;
+        height: 2px;
+        background: var(--navy);
+        transition: all 0.3s;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.98);
+        z-index: 999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s;
+      }
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .mobile-menu a {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--navy);
+        transition: color 0.3s;
+      }
+      .mobile-menu a:hover {
+        color: var(--gold);
+      }
+
+      /* === HERO === */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding-top: 5rem;
+        background: var(--cream);
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 70% 20%,
+            rgba(176, 141, 62, 0.05) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 60% 50% at 20% 80%,
+            rgba(248, 245, 239, 0.8) 0%,
+            transparent 60%
+          );
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(176, 141, 62, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(176, 141, 62, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        opacity: 0.5;
+      }
+
+      .hero .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        border: 1px solid rgba(176, 141, 62, 0.25);
+        padding: 0.45rem 1.2rem;
+        border-radius: 50px;
+        margin-bottom: 1.8rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(247, 240, 224, 0.5);
+      }
+      .hero-badge .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        animation: blink 2s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        color: var(--navy);
+        line-height: 1.15;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--gold);
+        font-weight: 400;
+      }
+      .hero-desc {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: var(--text-body);
+        max-width: 520px;
+        margin-bottom: 2.5rem;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--navy);
+        color: var(--white);
+        padding: 0.9rem 2rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: all 0.35s;
+        font-family: var(--font-body);
+      }
+      .btn-primary:hover {
+        background: var(--gold);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(176, 141, 62, 0.2);
+      }
+      .btn-primary svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s;
+      }
+      .btn-primary:hover svg {
+        transform: translateX(4px);
+      }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: transparent;
+        color: var(--navy);
+        padding: 0.9rem 2rem;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: 1px solid var(--border-light);
+        cursor: pointer;
+        transition: all 0.35s;
+        font-family: var(--font-body);
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      /* Hero image */
+      .hero-visual {
+        position: relative;
+      }
+      .hero-img-wrapper {
+        position: relative;
+        border-radius: 2px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(15, 28, 63, 0.1);
+      }
+      .hero-img-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .hero-img-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 2rem;
+        right: 2rem;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        z-index: 2;
+      }
+      .hero-img-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        background: linear-gradient(
+          to top,
+          rgba(15, 28, 63, 0.85) 0%,
+          rgba(15, 28, 63, 0.4) 60%,
+          transparent 100%
+        );
+        z-index: 2;
+      }
+      .hero-stats-row {
+        display: flex;
+        gap: 2.5rem;
+      }
+      .hero-mini-stat {
+        text-align: center;
+      }
+      .hero-mini-stat .num {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        color: var(--gold-light);
+        font-weight: 600;
+        line-height: 1;
+      }
+      .hero-mini-stat .label {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 0.2rem;
+      }
+      .float-accent {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border: 1px solid rgba(176, 141, 62, 0.1);
+        border-radius: 50%;
+        top: -30px;
+        right: -50px;
+        animation: float 8s ease-in-out infinite;
+        z-index: 0;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+
+      /* === STATS BAR === */
+      .stats-bar {
+        border-top: 1px solid var(--border-light);
+        border-bottom: 1px solid var(--border-light);
+        padding: 3rem 2rem;
+        background: var(--white);
+      }
+      .stats-bar .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        text-align: center;
+      }
+      .stat-item-number {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .stat-item-text {
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 0.3rem;
+      }
+
+      /* === SECTION HEADERS === */
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .section-tag::before {
+        content: "";
+        width: 30px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        color: var(--navy);
+        line-height: 1.2;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      .section-title em {
+        font-family: var(--font-display);
+        color: var(--gold);
+        font-style: italic;
+      }
+      .section-subtitle {
+        font-size: 1rem;
+        color: var(--text-body);
+        max-width: 600px;
+        line-height: 1.7;
+      }
+
+      /* === ABOUT === */
+      .about {
+        background: var(--white);
+      }
+      .about .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .about-image-wrapper {
+        position: relative;
+      }
+      .about-img {
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 2px;
+        filter: brightness(0.95) contrast(1.02);
+      }
+      .about-accent {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 180px;
+        height: 180px;
+        border: 1px solid var(--border-gold);
+        z-index: -1;
+      }
+      .about-gold-bar {
+        position: absolute;
+        top: 20px;
+        left: -15px;
+        width: 4px;
+        height: 120px;
+        background: var(--gold);
+      }
+      .about-features {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 2.5rem;
+      }
+      .about-feature {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      .about-feature-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border: 1px solid var(--border-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        background: var(--gold-pale);
+      }
+      .about-feature-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .about-feature h4 {
+        font-size: 0.9rem;
+        color: var(--navy);
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .about-feature p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* === SERVICES === */
+      .services {
+        background: var(--cream);
+      }
+      .services-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .services-header .section-subtitle {
+        margin: 0 auto;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .service-card {
+        background: var(--white);
+        border: 1px solid var(--border-light);
+        padding: 2.5rem 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s;
+        cursor: default;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+      .service-card:hover {
+        border-color: var(--border-gold);
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(15, 28, 63, 0.06);
+      }
+      .service-card:hover::before {
+        opacity: 1;
+      }
+      .service-number {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        color: var(--gold-pale);
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .service-card:hover .service-number {
+        color: rgba(176, 141, 62, 0.15);
+      }
+      .service-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        color: var(--navy);
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+      }
+      .service-card .service-sub {
+        font-size: 0.72rem;
+        color: var(--gold);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .service-card p {
+        font-size: 0.88rem;
+        color: var(--text-body);
+        line-height: 1.7;
+        margin-bottom: 1.2rem;
+      }
+      .service-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .service-list li {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        padding-left: 1rem;
+        position: relative;
+      }
+      .service-list li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+      }
+
+      /* === IMAGE BREAK === */
+      .img-break {
+        position: relative;
+        height: 450px;
+        overflow: hidden;
+      }
+      .img-break img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+      }
+      .img-break-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 28, 63, 0.7) 0%,
+          rgba(15, 28, 63, 0.3) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .img-break-content {
+        text-align: center;
+        max-width: 700px;
+        padding: 2rem;
+      }
+      .img-break-content blockquote {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        color: var(--white);
+        line-height: 1.4;
+        font-style: italic;
+        font-weight: 400;
+        margin-bottom: 1rem;
+      }
+      .img-break-content cite {
+        font-size: 0.82rem;
+        color: var(--gold-light);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-style: normal;
+      }
+
+      /* === METHODOLOGY === */
+      .methodology {
+        background: var(--white);
+        position: relative;
+      }
+      .methodology::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 50% 50% at 50% 50%,
+          rgba(176, 141, 62, 0.03) 0%,
+          transparent 70%
+        );
+      }
+      .methodology-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .methodology-header .section-subtitle {
+        margin: 0 auto;
+      }
+      .method-steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        position: relative;
+      }
+      .method-steps::before {
+        content: "";
+        position: absolute;
+        top: 35px;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--border-gold),
+          var(--border-gold),
+          transparent
+        );
+      }
+      .method-step {
+        text-align: center;
+        padding: 0 1rem;
+        position: relative;
+      }
+      .method-step-num {
+        width: 70px;
+        height: 70px;
+        border: 1px solid var(--border-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        color: var(--gold);
+        background: var(--white);
+        position: relative;
+        z-index: 2;
+        transition: all 0.4s;
+      }
+      .method-step:hover .method-step-num {
+        background: var(--navy);
+        color: var(--white);
+        border-color: var(--navy);
+      }
+      .method-step h4 {
+        font-size: 0.85rem;
+        color: var(--navy);
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+      .method-step p {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* === FOUNDER === */
+      .founder {
+        background: var(--cream);
+        border-top: 1px solid var(--border-light);
+      }
+      .founder .container {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .founder-img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 2px;
+        box-shadow: 0 20px 50px rgba(15, 28, 63, 0.08);
+      }
+      .founder-quote {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--navy);
+        line-height: 1.5;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 3px solid var(--gold);
+      }
+      .founder-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--navy);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .founder-role {
+        font-size: 0.82rem;
+        color: var(--gold);
+        margin-top: 0.2rem;
+      }
+
+      /* === TEAM === */
+      .team {
+        background: var(--white);
+      }
+      .team-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .team-header .section-subtitle {
+        margin: 0 auto;
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+      .team-card {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        background: var(--cream);
+        border: 1px solid var(--border-light);
+        transition: all 0.4s;
+      }
+      .team-card:hover {
+        border-color: var(--border-gold);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(15, 28, 63, 0.05);
+      }
+      .team-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.2rem;
+        border: 1px solid var(--border-gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--gold-pale);
+      }
+      .team-icon svg {
+        width: 28px;
+        height: 28px;
+        color: var(--gold);
+      }
+      .team-card h4 {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        color: var(--navy);
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+      }
+      .team-card p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* === PROBLEMS === */
+      .problems {
+        background: var(--cream);
+        border-top: 1px solid var(--border-light);
+      }
+      .problems .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .problems-img {
+        width: 100%;
+        border-radius: 2px;
+        box-shadow: 0 15px 40px rgba(15, 28, 63, 0.07);
+      }
+      .problems-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .problem-item {
+        padding: 1.5rem;
+        background: var(--white);
+        border-left: 2px solid var(--border-gold);
+        transition: all 0.4s;
+      }
+      .problem-item:hover {
+        border-left-color: var(--gold);
+        box-shadow: 0 8px 25px rgba(15, 28, 63, 0.04);
+      }
+      .problem-item h4 {
+        font-size: 0.95rem;
+        color: var(--navy);
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+      .problem-item p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* === CTA === */
+      .cta-section {
+        background: var(--navy);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 60% 80% at 50% 50%,
+          rgba(176, 141, 62, 0.08) 0%,
+          transparent 70%
+        );
+      }
+      .cta-section .container {
+        position: relative;
+        z-index: 2;
+      }
+      .cta-section .section-tag {
+        color: var(--gold-light);
+        justify-content: center;
+      }
+      .cta-section .section-tag::before {
+        background: var(--gold-light);
+      }
+      .cta-section .section-title {
+        color: var(--white);
+      }
+      .cta-section .section-title em {
+        color: var(--gold-light);
+      }
+      .cta-section .section-subtitle {
+        margin: 0 auto 2.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .cta-actions {
+        display: flex;
+        gap: 1.2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-section .btn-primary {
+        background: var(--gold);
+        color: var(--white);
+      }
+      .cta-section .btn-primary:hover {
+        background: var(--gold-light);
+        box-shadow: 0 8px 30px rgba(176, 141, 62, 0.35);
+      }
+      .cta-section .btn-outline {
+        color: var(--white);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .cta-section .btn-outline:hover {
+        border-color: var(--gold-light);
+        color: var(--gold-light);
+      }
+
+      /* === CONTACT === */
+      .contact {
+        background: var(--white);
+        border-top: 1px solid var(--border-light);
+      }
+      .contact .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+      }
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .contact-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      .contact-item-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        border: 1px solid var(--border-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        background: var(--gold-pale);
+      }
+      .contact-item-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .contact-item h4 {
+        font-size: 0.85rem;
+        color: var(--navy);
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .contact-item p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        width: 100%;
+        padding: 0.9rem 1.2rem;
+        background: var(--cream);
+        border: 1px solid var(--border-light);
+        color: var(--navy);
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s;
+        outline: none;
+      }
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: var(--slate-light);
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus,
+      .contact-form select:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.08);
+      }
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .contact-form select {
+        appearance: none;
+        cursor: pointer;
+        color: var(--text-body);
+      }
+
+      /* === FOOTER === */
+      footer {
+        background: var(--navy);
+        padding: 3rem 2rem;
+      }
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .footer-logo-img {
+        height: 40px;
+        width: auto;
+        filter: brightness(1.5);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+      }
+      .footer-social a {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.3s;
+      }
+      .footer-social a:hover {
+        color: var(--gold);
+        border-color: var(--gold);
+      }
+      .footer-social a svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* === BACK TO TOP === */
+      .back-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 44px;
+        height: 44px;
+        background: var(--navy);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 100;
+        border: none;
+      }
+      .back-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-top:hover {
+        background: var(--gold);
+        transform: translateY(-2px);
+      }
+      .back-top svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* === RESPONSIVE === */
+      @media (max-width: 1024px) {
+        .hero .container {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-desc {
+          margin: 0 auto 2.5rem;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        .hero-visual {
+          margin-top: 3rem;
+        }
+        .hero-stats-row {
+          justify-content: center;
+        }
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .method-steps {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+        }
+        .method-steps::before {
+          display: none;
+        }
+        .method-step:nth-child(4),
+        .method-step:nth-child(5) {
+          margin-top: 2rem;
+        }
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .about .container,
+        .problems .container,
+        .contact .container,
+        .founder .container {
+          grid-template-columns: 1fr;
+        }
+        .about-image-wrapper {
+          order: -1;
+        }
+        .stats-bar .container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .img-break {
+          height: 350px;
+        }
+        .founder-img {
+          max-width: 400px;
+          margin: 0 auto;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .mobile-menu {
+          display: flex;
+        }
+        .section {
+          padding: 5rem 1.5rem;
+        }
+        .hero {
+          min-height: auto;
+          padding: 7rem 1.5rem 4rem;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .method-steps {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .footer-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+        .img-break {
+          height: 280px;
+        }
+        .problems .container {
+          gap: 3rem;
+        }
+      }
+
+      /* === WHATSAPP FLOAT === */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 100;
+        width: 54px;
+        height: 54px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+        transition: all 0.3s;
+        animation: wa-pulse 2s ease-in-out infinite;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 30px rgba(37, 211, 102, 0.45);
+      }
+      .whatsapp-float svg {
+        width: 26px;
+        height: 26px;
+        fill: #fff;
+      }
+      @keyframes wa-pulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+        }
+        50% {
+          box-shadow: 0 4px 30px rgba(37, 211, 102, 0.55);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+      <img
+        src="Captura de pantalla 2026-03-05 164415.png"
+        alt="ER Consultores"
+        class="loader-logo"
+      />
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="#hero"
+          ><img
+            src="Captura de pantalla 2026-03-05 164415.png"
+            alt="ER Consultores Integrales"
+            class="nav-logo-img"
+        /></a>
+        <div class="nav-links">
+          <a href="#nosotros">Nosotros</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#metodologia">Metodología</a>
+          <a href="#equipo">Equipo</a>
+          <a href="#contacto">Contacto</a>
+          <a href="http://wa.me/593999836605" class="nav-cta" target="_blank"
+            >Agendar Consulta</a
+          >
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
+      <a href="#servicios" onclick="closeMenu()">Servicios</a>
+      <a href="#metodologia" onclick="closeMenu()">Metodología</a>
+      <a href="#equipo" onclick="closeMenu()">Equipo</a>
+      <a href="#contacto" onclick="closeMenu()">Contacto</a>
+      <a
+        href="http://wa.me/593999836605"
+        target="_blank"
+        style="color: var(--gold)"
+        >Agendar Consulta</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge reveal">
+            <span class="dot"></span> Consultoría Estratégica Integral
+          </div>
+          <h1 class="reveal reveal-delay-1">
+            Impulsamos el <em>crecimiento</em> de su empresa con estrategia y
+            experiencia
+          </h1>
+          <p class="hero-desc reveal reveal-delay-2">
+            Soluciones integrales en asesoría legal, financiera y desarrollo
+            organizacional para empresas y emprendedores que buscan resultados
+            medibles y sostenibles.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a
+              href="http://wa.me/593999836605"
+              target="_blank"
+              class="btn-primary"
+            >
+              Agenda tu Consulta
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#servicios" class="btn-outline"
+              >Conoce nuestros servicios</a
+            >
+          </div>
+        </div>
+        <div class="hero-visual reveal reveal-delay-2">
+          <div class="float-accent"></div>
+          <div class="hero-img-wrapper">
+            <!-- Foto presentando gráficos - transmite liderazgo y resultados -->
+            <img
+              src="En_base_a_esta_foto_creame_fotos_rofesionales_de_e_delpmaspu (1).png"
+              alt="Consultora presentando resultados estratégicos"
+            />
+            <div class="hero-img-overlay">
+              <div class="hero-stats-row">
+                <div class="hero-mini-stat">
+                  <div class="num" data-count="25">0</div>
+                  <div class="label">Años de Experiencia</div>
+                </div>
+                <div class="hero-mini-stat">
+                  <div class="num" data-count="500">0+</div>
+                  <div class="label">Empresas Asesoradas</div>
+                </div>
+                <div class="hero-mini-stat">
+                  <div class="num" data-count="98">0%</div>
+                  <div class="label">Satisfacción</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stat-item reveal">
+          <div class="stat-item-number">25+</div>
+          <div class="stat-item-text">Años de Trayectoria</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-item-number">PYMES</div>
+          <div class="stat-item-text">Enfoque Principal</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-item-number">360°</div>
+          <div class="stat-item-text">Soluciones Integrales</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-item-number">EC</div>
+          <div class="stat-item-text">Cobertura Nacional</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about section" id="nosotros">
+      <div class="container">
+        <div class="about-image-wrapper reveal">
+          <!-- Foto en oficina trabajando - transmite profesionalismo día a día -->
+          <img
+            src="En_base_a_esta_mujer_genera_foto_profesional_en_di_delpmaspu (1).png"
+            alt="Consultora en sesión de trabajo"
+            class="about-img"
+          />
+          <div class="about-accent"></div>
+          <div class="about-gold-bar"></div>
+        </div>
+        <div class="about-content">
+          <div class="section-tag reveal">Nuestra Esencia</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Un legado de <em>25 años</em> al servicio empresarial
+          </h2>
+          <p
+            class="section-subtitle reveal reveal-delay-2"
+            style="margin-bottom: 2rem"
+          >
+            ER Consultores Integrales nace de una trayectoria sólida de 25 años
+            en el corazón del sistema financiero ecuatoriano. Con experiencia
+            directiva forjada en instituciones líderes como Banco Pichincha y
+            Cooperativa JEP, somos el aliado estratégico que su empresa
+            necesita.
+          </p>
+          <div class="about-features reveal reveal-delay-3">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 12l2 2 4-4" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </div>
+              <div>
+                <h4>Análisis Técnico Riguroso</h4>
+                <p>
+                  Decisiones informadas basadas en la realidad financiera y
+                  datos concretos.
+                </p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <div>
+                <h4>Acompañamiento Estratégico</h4>
+                <p>
+                  Soluciones sostenibles proyectadas hacia el futuro de su
+                  empresa.
+                </p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4>Visión Humana</h4>
+                <p>
+                  Un enfoque respaldado por un marco legal sólido y empatía
+                  empresarial.
+                </p>
+              </div>
+            </div>
+          </div>
+          <a href="#servicios" class="btn-primary reveal reveal-delay-4"
+            >Descubre nuestras soluciones
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services section" id="servicios">
+      <div class="container">
+        <div class="services-header">
+          <div class="section-tag reveal">Soluciones Integrales</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Servicios diseñados para su <em>crecimiento</em>
+          </h2>
+          <p class="section-subtitle reveal reveal-delay-2">
+            Combinamos experiencia financiera, legal y tecnológica para ofrecer
+            soluciones completas y a medida.
+          </p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="service-number">01</div>
+            <h3>Asesoría Legal Corporativa</h3>
+            <div class="service-sub">Penal · Civil · Tributario · Laboral</div>
+            <p>
+              Asesoría jurídica integral orientada a la prevención de riesgos y
+              protección del patrimonio empresarial.
+            </p>
+            <ul class="service-list">
+              <li>Defensa en procesos penales corporativos</li>
+              <li>Planificación y cumplimiento tributario</li>
+              <li>Asesoría laboral preventiva</li>
+              <li>Estructuración de contratos</li>
+            </ul>
+          </div>
+          <div class="service-card reveal reveal-delay-1">
+            <div class="service-number">02</div>
+            <h3>Consultoría Financiera</h3>
+            <div class="service-sub">Créditos · Deudas · PYMES</div>
+            <p>
+              Estrategias financieras para estabilizar, optimizar y proyectar el
+              crecimiento empresarial.
+            </p>
+            <ul class="service-list">
+              <li>Reestructuración de deudas</li>
+              <li>Negociación con entidades financieras</li>
+              <li>Planificación financiera para PYMES</li>
+              <li>Estructuración de créditos estratégicos</li>
+            </ul>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <div class="service-number">03</div>
+            <h3>Coaching & Desarrollo</h3>
+            <div class="service-sub">Emocional · Financiero · Empresarial</div>
+            <p>
+              Fortalecemos el liderazgo y la toma de decisiones mediante
+              acompañamiento estratégico.
+            </p>
+            <ul class="service-list">
+              <li>Coaching ejecutivo y empresarial</li>
+              <li>Gestión emocional en alta presión</li>
+              <li>Desarrollo de habilidades directivas</li>
+              <li>Alineación estratégica visión-ejecución</li>
+            </ul>
+          </div>
+          <div class="service-card reveal">
+            <div class="service-number">04</div>
+            <h3>Análisis de Datos</h3>
+            <div class="service-sub">Evaluación de Riesgo · Scoring</div>
+            <p>
+              Transformamos información en decisiones estratégicas basadas en
+              datos y métricas claras.
+            </p>
+            <ul class="service-list">
+              <li>Evaluación de riesgo crediticio</li>
+              <li>Modelos de scoring financiero</li>
+              <li>Análisis de KPIs estratégicos</li>
+              <li>Diagnóstico cuantitativo empresarial</li>
+            </ul>
+          </div>
+          <div class="service-card reveal reveal-delay-1">
+            <div class="service-number">05</div>
+            <h3>Transformación Digital</h3>
+            <div class="service-sub">Procesos · Tecnología · Eficiencia</div>
+            <p>
+              Modernizamos procesos y estructuras mediante tecnología y
+              automatización inteligente.
+            </p>
+            <ul class="service-list">
+              <li>Digitalización de procesos administrativos</li>
+              <li>Implementación tecnológica</li>
+              <li>Automatización financiera y operativa</li>
+              <li>Estrategias digitales de eficiencia</li>
+            </ul>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <div class="service-number">06</div>
+            <h3>Contabilidad & Tributación</h3>
+            <div class="service-sub">
+              Outsourcing · Cumplimiento · Optimización
+            </div>
+            <p>
+              Gestión contable profesional y planificación tributaria para
+              maximizar la rentabilidad.
+            </p>
+            <ul class="service-list">
+              <li>Outsourcing contable integral</li>
+              <li>Declaraciones y cumplimiento fiscal</li>
+              <li>Optimización de carga tributaria</li>
+              <li>Informes financieros estratégicos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE BREAK - Foto con datos/gráficos -->
+    <div class="img-break">
+      <img
+        src="En_base_a_esta_mujer_genera_foto_profesional_en_di_delpmaspu (2).png"
+        alt="Análisis estratégico de datos"
+      />
+      <div class="img-break-overlay">
+        <div class="img-break-content">
+          <blockquote>
+            "Transformamos información en decisiones estratégicas que impulsan
+            el crecimiento sostenible de su empresa"
+          </blockquote>
+          <cite>ER Consultores Integrales</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- METHODOLOGY -->
+    <section class="methodology section" id="metodologia">
+      <div class="container">
+        <div class="methodology-header">
+          <div class="section-tag reveal">Modelo ER</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Flujo de Diagnóstico <em>Estratégico</em>
+          </h2>
+          <p class="section-subtitle reveal reveal-delay-2">
+            Nuestra metodología propia evalúa integralmente la situación
+            empresarial antes de intervenir, garantizando soluciones
+            estructuradas y sostenibles.
+          </p>
+        </div>
+        <div class="method-steps">
+          <div class="method-step reveal">
+            <div class="method-step-num">01</div>
+            <h4>Diagnóstico Legal</h4>
+            <p>Evaluación del marco jurídico y cumplimiento normativo.</p>
+          </div>
+          <div class="method-step reveal reveal-delay-1">
+            <div class="method-step-num">02</div>
+            <h4>Diagnóstico Financiero</h4>
+            <p>Análisis profundo de salud financiera y flujo de caja.</p>
+          </div>
+          <div class="method-step reveal reveal-delay-2">
+            <div class="method-step-num">03</div>
+            <h4>Evaluación de Riesgo</h4>
+            <p>Identificación de vulnerabilidades y áreas de mejora.</p>
+          </div>
+          <div class="method-step reveal reveal-delay-3">
+            <div class="method-step-num">04</div>
+            <h4>Plan de Acción</h4>
+            <p>Estrategia personalizada con objetivos medibles.</p>
+          </div>
+          <div class="method-step reveal reveal-delay-4">
+            <div class="method-step-num">05</div>
+            <h4>Seguimiento</h4>
+            <p>Monitoreo continuo para garantizar resultados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="founder section">
+      <div class="container">
+        <div class="reveal">
+          <!-- Foto atendiendo cliente - transmite cercanía y confianza -->
+          <img
+            src="En_base_a_esta_mujer_genera_foto_profesional_en_di_delpmaspu (3).png"
+            alt="Consultoría personalizada"
+            class="founder-img"
+          />
+        </div>
+        <div>
+          <div class="section-tag reveal">Liderazgo</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Su aliada estratégica de <em>confianza</em>
+          </h2>
+          <p class="founder-quote reveal reveal-delay-2">
+            Nuestro propósito es claro: ser el aliado estratégico que el
+            empresario necesita para superar los desafíos que frenan su
+            crecimiento.
+          </p>
+          <p
+            class="reveal reveal-delay-3"
+            style="
+              color: var(--text-body);
+              line-height: 1.7;
+              margin-bottom: 1.5rem;
+            "
+          >
+            Con 25 años de experiencia en el sistema financiero ecuatoriano y
+            una visión que combina análisis técnico riguroso con acompañamiento
+            humano, lideramos un equipo multidisciplinario comprometido con
+            resultados medibles para cada cliente.
+          </p>
+          <div class="reveal reveal-delay-4">
+            <p class="founder-name">Fundadora & CEO</p>
+            <p class="founder-role">ER Consultores Integrales</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team section" id="equipo">
+      <div class="container">
+        <div class="team-header">
+          <div class="section-tag reveal">Equipo Multidisciplinario</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Expertos de <em>primer nivel</em>
+          </h2>
+          <p class="section-subtitle reveal reveal-delay-2">
+            Un equipo coordinado de profesionales en las áreas fundamentales
+            para el crecimiento de su empresa.
+          </p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"
+                />
+              </svg>
+            </div>
+            <h4>Expertos Legales</h4>
+            <p>
+              Blindan su operación y aseguran el cumplimiento normativo
+              integral.
+            </p>
+          </div>
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                />
+              </svg>
+            </div>
+            <h4>Especialistas Financieros</h4>
+            <p>
+              Visión analítica para optimizar recursos y rentabilidad
+              empresarial.
+            </p>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8M12 17v4" />
+              </svg>
+            </div>
+            <h4>Consultores en Tecnología</h4>
+            <p>
+              Digitalizan procesos y cierran la brecha hacia la eficiencia
+              moderna.
+            </p>
+          </div>
+          <div class="team-card reveal reveal-delay-3">
+            <div class="team-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h4>Desarrollo Humano</h4>
+            <p>
+              Potencian el talento que mueve su organización hacia el éxito.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMS -->
+    <section class="problems section">
+      <div class="container">
+        <div>
+          <div class="section-tag reveal">Entendemos sus Desafíos</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Los problemas críticos que enfrentan los <em>negocios hoy</em>
+          </h2>
+          <p
+            class="section-subtitle reveal reveal-delay-2"
+            style="margin-bottom: 2.5rem"
+          >
+            De primera mano conocemos los retos que impiden el crecimiento
+            empresarial.
+          </p>
+          <div class="problems-list">
+            <div class="problem-item reveal">
+              <div>
+                <h4>Falta de Liquidez</h4>
+                <p>
+                  La asfixiante falta de liquidez que impide la operación diaria
+                  y el crecimiento del negocio.
+                </p>
+              </div>
+            </div>
+            <div class="problem-item reveal reveal-delay-1">
+              <div>
+                <h4>Mal Manejo de Gastos</h4>
+                <p>
+                  El descontrol en gastos que erosiona la utilidad y compromete
+                  la sostenibilidad financiera.
+                </p>
+              </div>
+            </div>
+            <div class="problem-item reveal reveal-delay-2">
+              <div>
+                <h4>Descontrol de Inventarios</h4>
+                <p>
+                  La falta de sistemas adecuados para el control y gestión
+                  eficiente de inventarios.
+                </p>
+              </div>
+            </div>
+            <div class="problem-item reveal reveal-delay-3">
+              <div>
+                <h4>Brecha Tecnológica</h4>
+                <p>
+                  La necesidad urgente de adoptar tecnología eficiente para
+                  competir en el mercado actual.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <!-- Foto collage de 4 actividades - muestra versatilidad -->
+          <img
+            src="En_base_a_esta_mujer_genera_foto_profesional_en_di_delpmaspu (4).png"
+            alt="Servicios de consultoría integral"
+            class="problems-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="section-tag reveal">Trabajemos Juntos</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          ¿Listo para transformar su <em>empresa</em>?
+        </h2>
+        <p class="section-subtitle reveal reveal-delay-2">
+          Agende una consulta estratégica gratuita y descubra cómo nuestras
+          soluciones integrales pueden impulsar su crecimiento empresarial.
+        </p>
+        <div class="cta-actions reveal reveal-delay-3">
+          <a
+            href="http://wa.me/593999836605"
+            target="_blank"
+            class="btn-primary"
+          >
+            Agendar Consulta Gratuita
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#contacto" class="btn-outline">Enviar Mensaje</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact section" id="contacto">
+      <div class="container">
+        <div>
+          <div class="section-tag reveal">Contáctenos</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Estamos aquí para <em>ayudarle</em>
+          </h2>
+          <p
+            class="section-subtitle reveal reveal-delay-2"
+            style="margin-bottom: 2.5rem"
+          >
+            Cuéntenos sobre su empresa y sus necesidades. Nuestro equipo le
+            responderá a la brevedad.
+          </p>
+          <div class="contact-info reveal reveal-delay-3">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <h4>Dirección</h4>
+                <p>
+                  Veintimilla N22-93 y Juan León Mera<br />Edificio Río de la
+                  Plata, Quito - Ecuador
+                </p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4>Teléfono</h4>
+                <p>+593 2 290 3968</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4>WhatsApp</h4>
+                <p>+593 99 983 6605</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="contact-form">
+            <div class="form-row">
+              <input type="text" placeholder="Nombre completo" required />
+              <input type="email" placeholder="Correo electrónico" required />
+            </div>
+            <div class="form-row">
+              <input type="tel" placeholder="Teléfono / WhatsApp" />
+              <select>
+                <option value="" disabled selected>Servicio de interés</option>
+                <option>Asesoría Legal Corporativa</option>
+                <option>Consultoría Financiera</option>
+                <option>Coaching & Desarrollo</option>
+                <option>Análisis de Datos</option>
+                <option>Transformación Digital</option>
+                <option>Contabilidad & Tributación</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <textarea
+              placeholder="Cuéntenos sobre su empresa y cómo podemos ayudarle..."
+            ></textarea>
+            <button
+              class="btn-primary"
+              type="button"
+              onclick="sendWhatsApp()"
+              style="justify-content: center; width: 100%"
+            >
+              Enviar Mensaje
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <img
+          src="Captura de pantalla 2026-03-05 164415.png"
+          alt="ER Consultores"
+          class="footer-logo-img"
+        />
+        <div class="footer-copy">
+          &copy; 2026 ER Consultores Integrales. Todos los derechos reservados.
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+              /></svg
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1.5"
+                fill="currentColor"
+                stroke="none"
+              /></svg
+          ></a>
+          <a href="#" aria-label="LinkedIn"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+              /></svg
+          ></a>
+          <a
+            href="http://wa.me/593999836605"
+            target="_blank"
+            aria-label="WhatsApp"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+              />
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.624-1.475A11.932 11.932 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.115 0-4.09-.57-5.794-1.564l-.415-.247-4.305 1.376 1.263-4.196-.271-.43A9.708 9.708 0 0 1 .75 12C.75 6.21 5.46 1.5 12 1.5S22.5 6.21 22.5 12 17.79 21.75 12 21.75z"
+              /></svg
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button
+      class="back-top"
+      id="backTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+
+    <!-- WHATSAPP FLOAT -->
+    <a
+      href="http://wa.me/593999836605"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="Chat por WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.624-1.475A11.932 11.932 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.115 0-4.09-.57-5.794-1.564l-.415-.247-4.305 1.376 1.263-4.196-.271-.43A9.708 9.708 0 0 1 .75 12C.75 6.21 5.46 1.5 12 1.5S22.5 6.21 22.5 12 17.79 21.75 12 21.75z"
+        />
+      </svg>
+    </a>
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(
+          () => document.getElementById("loader").classList.add("hide"),
+          1000,
+        );
+      });
+      const nav = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("scrolled", window.scrollY > 50);
+        document
+          .getElementById("backTop")
+          .classList.toggle("show", window.scrollY > 600);
+      });
+      function toggleMenu() {
+        document.getElementById("hamburger").classList.toggle("active");
+        document.getElementById("mobileMenu").classList.toggle("open");
+        document.body.style.overflow = document
+          .getElementById("mobileMenu")
+          .classList.contains("open")
+          ? "hidden"
+          : "";
+      }
+      function closeMenu() {
+        document.getElementById("hamburger").classList.remove("active");
+        document.getElementById("mobileMenu").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // Counter animation
+      function animateCounters() {
+        document.querySelectorAll("[data-count]").forEach((el) => {
+          const target = parseInt(el.getAttribute("data-count"));
+          const suffix = el.textContent.includes("%")
+            ? "%"
+            : el.textContent.includes("+")
+              ? "+"
+              : "";
+          const duration = 2000;
+          const start = performance.now();
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        });
+      }
+      // Trigger counters when hero image is in view
+      const heroImg = document.querySelector(".hero-img-wrapper");
+      if (heroImg) {
+        const cObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                animateCounters();
+                cObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+        cObs.observe(heroImg);
+      }
+
+      function sendWhatsApp() {
+        const name = document.querySelector(
+          '.contact-form input[type="text"]',
+        ).value;
+        const email = document.querySelector(
+          '.contact-form input[type="email"]',
+        ).value;
+        const phone = document.querySelector(
+          '.contact-form input[type="tel"]',
+        ).value;
+        const service = document.querySelector(".contact-form select").value;
+        const msg = document.querySelector(".contact-form textarea").value;
+        const text = `Hola, soy ${name || "[Nombre]"}.\nCorreo: ${email || "N/A"}\nTeléfono: ${phone || "N/A"}\nServicio: ${service || "General"}\n\n${msg || "Me gustaría agendar una consulta."}`;
+        window.open(
+          `https://wa.me/593999836605?text=${encodeURIComponent(text)}`,
+          "_blank",
+        );
+      }
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
