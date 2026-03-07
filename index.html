@@ -1604,11 +1604,11 @@
             <div class="label">Años de Experiencia</div>
           </div>
           <div class="hero-mini-stat">
-            <div class="num" data-count="500">0+</div>
+            <div class="num" data-count="19">0+</div>
             <div class="label">Empresas Asesoradas</div>
           </div>
           <div class="hero-mini-stat">
-            <div class="num" data-count="98">0%</div>
+            <div class="num" data-count="100">0%</div>
             <div class="label">Satisfacción</div>
           </div>
         </div>
@@ -2268,9 +2268,9 @@
         requestAnimationFrame(update);
       });
     }
-    // Trigger counters when hero image is in view
-    const heroImg = document.querySelector(".hero-img-wrapper");
-    if (heroImg) {
+    // Trigger counters when hero stats row is in view
+    const statsRow = document.querySelector(".hero-stats-row");
+    if (statsRow) {
       const cObs = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
@@ -2282,7 +2282,7 @@
         },
         { threshold: 0.5 },
       );
-      cObs.observe(heroImg);
+      cObs.observe(statsRow);
     }
 
     function sendWhatsApp() {
