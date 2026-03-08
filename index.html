@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
@@ -717,14 +717,16 @@
     .service-number {
       font-family: var(--font-display);
       font-size: 3rem;
-      color: var(--gold-pale);
+      color: rgba(176, 141, 62, 0.18);
       font-weight: 700;
       line-height: 1;
       margin-bottom: 1rem;
+      transition: color 0.5s ease, text-shadow 0.5s ease;
     }
 
     .service-card:hover .service-number {
-      color: rgba(176, 141, 62, 0.15);
+      color: var(--gold-light);
+      text-shadow: 0 0 30px rgba(201, 168, 76, 0.35);
     }
 
     /* === SERVICE CARD IMAGE === */
@@ -1578,13 +1580,13 @@
       <a href="#hero"><img src="marca.png" alt="ER Consultores Integrales" class="nav-logo-img" /></a>
       <div class="nav-links">
         <a href="#nosotros">Nosotros</a>
-        <a href="nosotros.html">Quiénes Somos</a>
         <a href="#servicios">Servicios</a>
+        <a href="outsourcing.html">Outsourcing</a>
         <a href="factoring.html">Factoring</a>
         <a href="#metodologia">Metodología</a>
         <a href="#equipo">Equipo</a>
         <a href="#contacto">Contacto</a>
-        <a href="http://wa.me/593999836605" class="nav-cta" target="_blank">Agendar Consulta</a>
+        <a href="http://wa.me/593963326332" class="nav-cta" target="_blank">Agendar Consulta</a>
       </div>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
         <span></span><span></span><span></span>
@@ -1595,13 +1597,13 @@
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
-    <a href="nosotros.html" onclick="closeMenu()">Quiénes Somos</a>
     <a href="#servicios" onclick="closeMenu()">Servicios</a>
+    <a href="outsourcing.html" onclick="closeMenu()">Outsourcing</a>
     <a href="factoring.html" onclick="closeMenu()">Factoring</a>
     <a href="#metodologia" onclick="closeMenu()">Metodología</a>
     <a href="#equipo" onclick="closeMenu()">Equipo</a>
     <a href="#contacto" onclick="closeMenu()">Contacto</a>
-    <a href="http://wa.me/593999836605" target="_blank" style="color: var(--gold)">Agendar Consulta</a>
+    <a href="http://wa.me/593963326332" target="_blank" style="color: var(--gold)">Agendar Consulta</a>
   </div>
 
   <!-- HERO -->
@@ -1621,7 +1623,7 @@
           medibles y sostenibles.
         </p>
         <div class="hero-actions reveal reveal-delay-3">
-          <a href="http://wa.me/593999836605" target="_blank" class="btn-primary">
+          <a href="http://wa.me/593963326332" target="_blank" class="btn-primary">
             Agenda tu Consulta
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
@@ -1687,8 +1689,8 @@
         <p class="section-subtitle reveal reveal-delay-2" style="margin-bottom: 2rem">
           ER Consultores Integrales nace de una trayectoria sólida de 25 años
           en el corazón del sistema financiero ecuatoriano. Con experiencia
-          directiva forjada en instituciones líderes como Banco Pichincha y
-          Cooperativa JEP, somos el aliado estratégico que su empresa
+          directiva liderando las instituciones financieras y cooperativas
+          más grandes del país, somos el aliado estratégico que su empresa
           necesita.
         </p>
         <div class="about-features reveal reveal-delay-3">
@@ -2116,7 +2118,7 @@
         soluciones integrales pueden impulsar su crecimiento empresarial.
       </p>
       <div class="cta-actions reveal reveal-delay-3">
-        <a href="http://wa.me/593999836605" target="_blank" class="btn-primary">
+        <a href="http://wa.me/593963326332" target="_blank" class="btn-primary">
           Agendar Consulta Gratuita
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -2164,7 +2166,7 @@
             </div>
             <div>
               <h4>Teléfono</h4>
-              <p>+593 2 290 3968</p>
+              <p>+593 96 332 6332</p>
             </div>
           </div>
           <div class="contact-item">
@@ -2176,7 +2178,7 @@
             </div>
             <div>
               <h4>WhatsApp</h4>
-              <p>+593 99 983 6605</p>
+              <p>+593 96 332 6332</p>
             </div>
           </div>
         </div>
@@ -2233,7 +2235,7 @@
             <path
               d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
           </svg></a>
-        <a href="http://wa.me/593999836605" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"
+        <a href="http://wa.me/593963326332" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"
             fill="currentColor">
             <path
               d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
@@ -2252,7 +2254,7 @@
   </button>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="http://wa.me/593999836605" target="_blank" class="whatsapp-float" aria-label="Chat por WhatsApp">
+  <a href="http://wa.me/593963326332" target="_blank" class="whatsapp-float" aria-label="Chat por WhatsApp">
     <svg viewBox="0 0 24 24">
       <path
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.624-1.475A11.932 11.932 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.115 0-4.09-.57-5.794-1.564l-.415-.247-4.305 1.376 1.263-4.196-.271-.43A9.708 9.708 0 0 1 .75 12C.75 6.21 5.46 1.5 12 1.5S22.5 6.21 22.5 12 17.79 21.75 12 21.75z" />
@@ -2354,7 +2356,7 @@
       const msg = document.querySelector(".contact-form textarea").value;
       const text = `Hola, soy ${name || "[Nombre]"}.\nCorreo: ${email || "N/A"}\nTeléfono: ${phone || "N/A"}\nServicio: ${service || "General"}\n\n${msg || "Me gustaría agendar una consulta."}`;
       window.open(
-        `https://wa.me/593999836605?text=${encodeURIComponent(text)}`,
+        `https://wa.me/593963326332?text=${encodeURIComponent(text)}`,
         "_blank",
       );
     }

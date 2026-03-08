@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
@@ -292,10 +292,11 @@
       color: var(--gold-light);
     }
 
-    /* HERO - dark navy background with pattern */
+    /* HERO - full image background */
     .hero-page {
-      min-height: 70vh;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+      min-height: 75vh;
+      background:
+        url('factory.png') 85% center / 125% no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -304,11 +305,18 @@
       padding: 8rem 2rem 5rem;
     }
 
+    /* Elegant dark overlay: navy tint + subtle gradient for text readability */
     .hero-page::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle at 20% 50%, rgba(176, 141, 62, .08) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(176, 141, 62, .05) 0%, transparent 50%);
+      background:
+        linear-gradient(to bottom,
+          rgba(10, 18, 40, 0.72) 0%,
+          rgba(10, 18, 40, 0.65) 50%,
+          rgba(10, 18, 40, 0.78) 100%);
+      /* Extra gold shimmer at the bottom edge */
+      box-shadow: inset 0 -3px 0 rgba(176, 141, 62, 0.5);
     }
 
     .hero-page-inner {
@@ -1027,7 +1035,7 @@
         <a href="outsourcing.html">Outsourcing</a>
         <a href="factoring.html" style="color:var(--gold-light)">Factoring</a>
         <a href="index.html#contacto">Contacto</a>
-        <a href="http://wa.me/593999836605" class="nav-cta" target="_blank">Agendar Consulta</a>
+        <a href="http://wa.me/593963326332" class="nav-cta" target="_blank">Agendar Consulta</a>
       </div>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
         <span></span><span></span><span></span>
@@ -1043,7 +1051,7 @@
     <a href="outsourcing.html" onclick="closeMenu()">Outsourcing</a>
     <a href="factoring.html" onclick="closeMenu()" style="color:var(--gold-light)">Factoring</a>
     <a href="index.html#contacto" onclick="closeMenu()">Contacto</a>
-    <a href="http://wa.me/593999836605" target="_blank" style="color:var(--gold)">Agendar Consulta</a>
+    <a href="http://wa.me/593963326332" target="_blank" style="color:var(--gold)">Agendar Consulta</a>
   </div>
 
   <!-- HERO -->
@@ -1053,7 +1061,7 @@
       <h1>Soluciones de <em>Factoring</em><br>y <em>Confirming</em> para su empresa</h1>
       <p>Anticipe el cobro de sus facturas y gestione sus pagos a proveedores con total seguridad jurídica y máxima
         eficiencia financiera.</p>
-      <a href="http://wa.me/593999836605" target="_blank" class="hero-page-cta">
+      <a href="http://wa.me/593963326332" target="_blank" class="hero-page-cta">
         Consulta Gratuita
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7" />
@@ -1209,7 +1217,7 @@
       <p class="section-subtitle reveal reveal-delay-2">Agende una consulta estratégica gratuita y descubra cómo el
         Factoring puede transformar el flujo financiero de su empresa.</p>
       <div class="cta-actions reveal reveal-delay-3">
-        <a href="http://wa.me/593999836605" target="_blank" class="btn-primary">
+        <a href="http://wa.me/593963326332" target="_blank" class="btn-primary">
           Agendar Consulta Gratuita
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -1250,7 +1258,7 @@
             </div>
             <div>
               <h4>Teléfono</h4>
-              <p>+593 2 290 3968</p>
+              <p>+593 96 332 6332</p>
             </div>
           </div>
           <div class="contact-item">
@@ -1262,7 +1270,7 @@
             </div>
             <div>
               <h4>WhatsApp</h4>
-              <p>+593 99 983 6605</p>
+              <p>+593 96 332 6332</p>
             </div>
           </div>
         </div>
@@ -1325,7 +1333,7 @@
   </button>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="http://wa.me/593999836605" target="_blank" class="whatsapp-float" aria-label="Chat por WhatsApp">
+  <a href="http://wa.me/593963326332" target="_blank" class="whatsapp-float" aria-label="Chat por WhatsApp">
     <svg viewBox="0 0 24 24">
       <path
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.624-1.475A11.932 11.932 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.115 0-4.09-.57-5.794-1.564l-.415-.247-4.305 1.376 1.263-4.196-.271-.43A9.708 9.708 0 0 1 .75 12C.75 6.21 5.46 1.5 12 1.5S22.5 6.21 22.5 12 17.79 21.75 12 21.75z" />
@@ -1370,7 +1378,7 @@
       const service = document.querySelector('.contact-form select').value;
       const msg = document.querySelector('.contact-form textarea').value;
       const text = `Hola, soy ${name || '[Nombre]'}.\nCorreo: ${email || 'N/A'}\nTeléfono: ${phone || 'N/A'}\nServicio: ${service || 'Factoring'}\n\n${msg || 'Me gustaría agendar una consulta.'}`;
-      window.open(`https://wa.me/593999836605?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/593963326332?text=${encodeURIComponent(text)}`, '_blank');
     }
 
     // LENIS SMOOTH SCROLL
